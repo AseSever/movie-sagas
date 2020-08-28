@@ -55,3 +55,18 @@ VALUES
 ('Science Fiction'),
 ('Space-Opera'),
 ('Superhero');
+
+INSERT INTO "movies_genres"
+VALUES 
+(1, 1),
+(1, 7),
+(1, 8),
+(1, 11),
+(1, 12),
+(2, 2),
+(2, 4),
+(2, 6),
+(2, 9),
+(11, 1),
+(11, 6),
+(11, 11);
