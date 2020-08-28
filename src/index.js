@@ -20,7 +20,7 @@ function* rootSaga() {
 // generator function for fetching movies from the database
 function* getMovies() {
     try {
-        let response = yield axios.get('/api/moive')
+        let response = yield axios.get('/api/movie')
         console.log(response.data);
         //send response.data to the movie reducer
         yield put({ type: 'SET_MOVIES', payload: response.data })
