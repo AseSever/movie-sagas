@@ -3,9 +3,13 @@ import React, { Component } from 'react';
 class Movies extends Component {
     render() {
         let movie = this.props.movie
-        return(
+        return (
             <>
-                <p>{movie.title}</p>
+                <div>
+                    <p>{movie.title}</p>
+                    <img src={movie.poster} alt={movie.description} />
+                </div>
+
             </>
         )
     }
