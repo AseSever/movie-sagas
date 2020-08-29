@@ -62,6 +62,9 @@ class AddMovie extends Component {
                             />
                         </section>
                         <section className="form-section">
+                           <SelectMenu />
+                        </section>
+                        <section className="form-section">
                             <input type="submit" value="Save" />
                         </section>
                     </form>
