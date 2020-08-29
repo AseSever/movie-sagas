@@ -15,7 +15,6 @@ class App extends Component {
           <Route path="/details" component={Details} />
           {/* ADD PAGES! */}
         </Router>
-        <p>Empty Page</p>
       </div>
     );
   }

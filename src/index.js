@@ -24,7 +24,7 @@ function* getDetails(action) {
     try {
         let response = yield axios.get(`/api/movie/details/${action.payload}`)
         console.log(response.data);
-        yield put({ type: 'SET_DETAILS', payload: response.data })
+        yield put({ type: 'SET_DETAILS', payload: response.data[0] })
     } catch (err) {
         console.log('Error with getDetails saga', err);
     }
