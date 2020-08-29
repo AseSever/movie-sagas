@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 
 class AddMovie extends Component {
 
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'FETCH_GENRES'})
+    }
+
     state = {
         newMovie: {
             title: '',
@@ -58,6 +62,9 @@ class AddMovie extends Component {
                             />
                         </section>
                         <section className="form-section">
+                           <SelectMenu />
+                        </section>
+                        <section className="form-section">
                             <input type="submit" value="Save" />
                         </section>
                     </form>
@@ -67,6 +74,10 @@ class AddMovie extends Component {
     }
 }
 
+const mapStateToProps = (reduxState) => {
+    return {
+        reduxState
+    }
+}
 
-
-export default connect()(AddMovie);
+export default connect(mapStateToProps)(AddMovie);

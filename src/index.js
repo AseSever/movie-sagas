@@ -16,6 +16,7 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', getMovies);
     yield takeEvery('FETCH_DETAILS', getDetails);
+    yield takeEvery('FETCH_GENRES', getGenres);
     yield takeEvery('SEND_NEWMOVIE', postNewMovie);
 }
 
@@ -23,9 +24,20 @@ function* rootSaga() {
 function* postNewMovie(action) {
     try {
         yield axios.post('/api/movie', action.payload)
-        yield put({ type: 'SET_MOVIES'})
+        yield put({ type: 'SET_MOVIES' })
     } catch (err) {
         console.log('Error in postNewMovie', err);
+    }
+} // end postNewMovie generator
+
+// generator for getting genres
+function* getGenres() {
+    try {
+        let response = yield axios.get('/api/genre')
+        console.log(response.data);
+        yield put({ type: 'SET_GENRES', payload: response.data })
+    } catch (err) {
+        console.log('Error with getGenres', err);
     }
 }
 
@@ -57,7 +69,8 @@ function* getMovies() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Use to store details data for each page
+
+// Used to store details data for each page
 const details = (state = {}, action) => {
     switch (action.type) {
         case 'SET_DETAILS':
