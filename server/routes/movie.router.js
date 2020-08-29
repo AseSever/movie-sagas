@@ -13,8 +13,24 @@ router.get('/', (req, res) => {
     .catch(err => {
       console.log('Error with Get route for home', err);
       res.sendStatus(500)
-    })
-})
+    });
+}) //  end route,  get movies
+
+// get details for specific movie
+router.get('/details/:id', (req, res) => {
+  console.log(req.params.id);
+  const queryText = `SELECT * FROM "movies" WHERE "id" = $1;`
+
+  pool.query(queryText, [req.params.id])
+   .then(result => {
+     console.log(result.rows);
+     res.send(result.rows)
+   })
+   .catch(err => {
+     console.log('Error in GET DETAILS route', err);
+     res.sendStatus(500)
+   });
+}) // end route,  get details
 
 router.post('/', (req, res) => {
   console.log(req.body);
