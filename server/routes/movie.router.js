@@ -18,6 +18,7 @@ router.get('/', (req, res) => {
 
 // get details for specific movie
 router.get('/details/:id', (req, res) => {
+  console.log(req.params.id);
   const queryText = `SELECT * FROM "movies" WHERE "id" = $1;`
 
   pool.query(queryText, [req.params.id])

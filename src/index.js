@@ -28,7 +28,7 @@ function* getDetails(action) {
     } catch (err) {
         console.log('Error with getDetails saga', err);
     }
-}
+} // end getDetails saga
 
 // generator function for fetching movies from the database
 function* getMovies() {
@@ -41,7 +41,7 @@ function* getMovies() {
     } catch (err) {
         console.log('Error in getMovies saga', err);
     }
-} // end getMovies
+} // end getMovies saga
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
