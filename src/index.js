@@ -14,7 +14,20 @@ import { takeEvery, put } from 'redux-saga/effects';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery( 'FETCH_MOVIES', getMovies )
+    yield takeEvery('FETCH_MOVIES', getMovies);
+    yield takeEvery('FETCH_DETAILS', getDetails);
+}
+
+// generator for movie details
+function* getDetails(action) {
+    console.log(action.payload);
+    try {
+        let response = yield axios.get(`/api/movie/details/${action.payload}`)
+        console.log(response.data);
+        yield put({ type: 'SET_DETAILS', payload: response.data })
+    } catch (err) {
+        console.log('Error with getDetails saga', err);
+    }
 }
 
 // generator function for fetching movies from the database
@@ -32,6 +45,16 @@ function* getMovies() {
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+// Use to store details data for each page
+const details = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_DETAILS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
 
 // Used to store movies returned from the server
 const movies = (state = [], action) => {
@@ -58,6 +81,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        details,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
@@ -66,6 +90,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={storeInstance}><App /></Provider>,
     document.getElementById('root'));
 registerServiceWorker();
