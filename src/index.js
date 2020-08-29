@@ -16,6 +16,17 @@ import { takeEvery, put } from 'redux-saga/effects';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', getMovies);
     yield takeEvery('FETCH_DETAILS', getDetails);
+    yield takeEvery('SEND_NEWMOVIE', postNewMovie);
+}
+
+// generator for posting a new movie
+function* postNewMovie(action) {
+    try {
+        yield axios.post('/api/movie', action.payload)
+        yield put({ type: 'SET_MOVIES'})
+    } catch (err) {
+        console.log('Error in postNewMovie', err);
+    }
 }
 
 // generator for movie details
