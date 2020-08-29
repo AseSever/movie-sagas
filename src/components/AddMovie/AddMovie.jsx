@@ -6,10 +6,6 @@ import SelectMenu from '../SelectMenu/SelectMenu';
 
 class AddMovie extends Component {
 
-    componentDidMount = () => {
-        this.props.dispatch({ type: 'FETCH_GENRES' })
-    }
-
     state = {
         newMovie: {
             title: '',

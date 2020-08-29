@@ -7,6 +7,7 @@ class MovieList extends Component {
     // on mount will get our movies for render
     componentDidMount = () => {
         this.getMovies();
+        this.props.dispatch({ type: 'FETCH_GENRES' });
     }
 
     // onclick of a movie poster to send to a details page
