@@ -27,7 +27,7 @@ function* postNewMovie(action) {
     } catch (err) {
         console.log('Error in postNewMovie', err);
     }
-}
+} // end postNewMovie saga
 
 // generator for movie details
 function* getDetails(action) {
