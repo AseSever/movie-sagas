@@ -2,8 +2,8 @@ input[type=text] {
     width: 300px;
 }
 
-.description {
-    width: 500px;
+textarea {
+    width: 300px;
     height: 300px;
 }
 
