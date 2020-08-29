@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 class Movies extends Component {
 
     getDetails = (id) => {
         console.log('click');
-        this.props.dispatch({type: 'FETCH_DETAILS', payload: id})
+        this.props.dispatch({type: 'FETCH_DETAILS', payload: id});
+        console.log(this.props.history);
     }
 
     render() {
