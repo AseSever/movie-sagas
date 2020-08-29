@@ -69,15 +69,6 @@ function* getMovies() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
-// Reducer to store the genres for use
-const genres = (state = [], action ) => {
-    switch (action.type) {
-        case 'SET_GENRES':
-            return action.payload;
-    default:
-        return state;
-    }
-}
 
 // Used to store details data for each page
 const details = (state = {}, action) => {
