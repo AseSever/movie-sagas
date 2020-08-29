@@ -6,7 +6,6 @@ class Movies extends Component {
         return (
             <>
                 <div>
-                    <p>{movie.title}</p>
                     <img src={movie.poster} alt={movie.description} />
                 </div>
 
