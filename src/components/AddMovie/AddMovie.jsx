@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './AddMovie.css';
 import { connect } from 'react-redux';
+import SelectMenu from '../SelectMenu/SelectMenu';
 
 
 class AddMovie extends Component {
 
     componentDidMount = () => {
-        this.props.dispatch({ type: 'FETCH_GENRES'})
+        this.props.dispatch({ type: 'FETCH_GENRES' })
     }
 
     state = {
@@ -14,15 +15,16 @@ class AddMovie extends Component {
             title: '',
             poster: '',
             description: '',
+            genre_id: ''
         }
     }
 
     handleSaveMovie = (event) => {
         event.preventDefault();
         console.log('clicky');
-        
     }
 
+    // this is setting our state for a post request
     handleChange = (event, movie) => {
         console.log(`in change ${movie}`);
         this.setState({
@@ -41,28 +43,34 @@ class AddMovie extends Component {
                 <div>
                     <form className="form" onSubmit={this.handleSaveMovie}>
                         <section className="form-section">
-                            <input  
+                            <input
                                 value={this.state.newMovie.title}
-                                onChange={(event) => this.handleChange(event, 'title')} 
+                                onChange={(event) => this.handleChange(event, 'title')}
                                 type="text" placeholder="Movie"
                             />
                         </section>
                         <section className="form-section">
-                            <input  
+                            <input
                                 value={this.state.newMovie.poster}
                                 onChange={(event) => this.handleChange(event, 'poster')}
                                 type="text" placeholder="Poster Url"
                             />
                         </section>
                         <section className="form-section">
-                            <textarea 
+                            <textarea
                                 value={this.state.newMovie.description}
                                 onChange={(event) => this.handleChange(event, 'description')}
                                 type="text" placeholder="Movie Description"
                             />
                         </section>
                         <section className="form-section">
-                           <SelectMenu />
+                            <select
+                                onChange={(event) => this.handleChange(event, 'genre_id')}
+                            >
+                                <option>Select Genre</option>
+                                {/* Select Menu is mapping genres and generting all genre selections */}
+                                <SelectMenu />
+                            </select>
                         </section>
                         <section className="form-section">
                             <input type="submit" value="Save" />
@@ -74,10 +82,5 @@ class AddMovie extends Component {
     }
 }
 
-const mapStateToProps = (reduxState) => {
-    return {
-        reduxState
-    }
-}
 
-export default connect(mapStateToProps)(AddMovie);
+export default connect()(AddMovie);

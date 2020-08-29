@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {HashRouter as Router, Route,} from 'react-router-dom';
 import './App.css';
-import Home from '../Home/Home.jsx';
+import MovieList from '../MovieList/MovieList.jsx';
 import Details from '../Details/Details.jsx';
 import AddMovie from '../AddMovie/AddMovie';
 
@@ -12,7 +12,7 @@ class App extends Component {
       <div className="App">
         <h1>Movies!</h1>
         <Router>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={MovieList} />
           <Route path="/details" component={Details} />
           <Route path="/addmovie" component={AddMovie} />
           {/* ADD PAGES! */}
