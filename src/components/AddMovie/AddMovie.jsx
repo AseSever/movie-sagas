@@ -6,6 +6,7 @@ import SelectMenu from '../SelectMenu/SelectMenu';
 
 class AddMovie extends Component {
 
+    // fetching genres from the database for my menu list
     componentDidMount = () => {
         this.props.dispatch({ type: 'FETCH_GENRES' });
     }
@@ -19,11 +20,16 @@ class AddMovie extends Component {
         }
     }
 
+    // sends new movie info to post request saga
     handleSaveMovie = (event) => {
         event.preventDefault();
         console.log('clicky');
-        this.props.dispatch({type: 'SEND_NEWMOVIE', payload: this.state.newMovie})
-    }
+        if( this.state.newMovie.title !== '' && this.state.newMovie.poster !== '') {
+            this.props.dispatch({type: 'SEND_NEWMOVIE', payload: this.state.newMovie})
+        } else {
+            alert('Cannot save a new movie without giving a movie and a poster')
+        }
+    } // end handleSaveMovie
 
     // this is setting our state for a post request
     handleChange = (event, movie) => {
@@ -35,7 +41,13 @@ class AddMovie extends Component {
             }
         })
         console.log(this.state);
-    }
+    } // end handleChange
+
+    // for cancelling the add movie process and going back to home page
+    handleCancel = (event) => {
+        event.preventDefault();
+        this.props.history.push('/')
+    } // end handleCancel
 
     render() {
         console.log(this.state);
@@ -75,6 +87,7 @@ class AddMovie extends Component {
                         </section>
                         <section className="form-section">
                             <input type="submit" value="Save" />
+                            <input onClick={this.handleCancel} type="button" value="Cancel" />
                         </section>
                     </form>
                 </div>

@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import './MovieList.css';
 import { connect } from 'react-redux';
-import Movies from '../Movies/Movies.jsx'
+import Movies from '../Movies/Movies.jsx';
+// MATERIAL-UI
+import {
+    Grid,
+    Button,
+} from '@material-ui/core';
 
 class MovieList extends Component {
 
@@ -30,15 +36,28 @@ class MovieList extends Component {
     render() {
         return (
             <>
-                <div>
-                    <div>
-                        <button onClick={this.gotToAddMovie}>Add Movie</button>
-                    </div>
-                    <div>
+                <div >
+                    <Grid>
+                        <Button
+                            className="add-movie" 
+                            variant="contained"
+                            onClick={this.gotToAddMovie}
+                        >
+                            Add Movie
+                        </Button>
+                    </Grid>
+                    <Grid
+                        container
+                        spacing={3}
+                        direction="row"
+                        justify="flex-start"
+                    >
                         {this.props.reduxState.movies.map((movie, i) => {
-                            return (<Movies key={i} movie={movie} getDetails={this.getDetails} />)
+                            return (
+                                <Movies key={i} movie={movie} getDetails={this.getDetails} />
+                            )
                         })}
-                    </div>
+                    </Grid>
 
                 </div>
             </>
