@@ -1,16 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+// MATERIAL-UI
+import { MenuItem, FormControl, InputLabel, Select } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-class SelectMenu extends Component {
-    render() {
-        return (
-            <>
-                {this.props.reduxState.genres.map((genre, i) => {
-                    return (<option key={i} value={i}>{genre.name}</option>)
-                })}
-            </>
-        )
-    }
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+        margin: theme.spacing(1),
+        width: 200,
+        height: 20,
+    },
+}));
+
+
+function SelectMenu(props) {
+    const classes = useStyles();
+
+    return (
+        <div>
+            <FormControl variant="outlined" className={classes.formControl}>
+                <InputLabel id="Select Genre">Genre</InputLabel>
+                <Select
+                    labelId="Select Genre"
+                    id="Select Genre"
+                    value={props.genre_id}
+                    onChange={(event) => props.handleChange(event, 'genre_id')}
+                    label="Age"
+                >
+                    <MenuItem value=""><em>None</em></MenuItem>
+                    {props.reduxState.genres.map((genre, i) => {
+                        return (<MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>)
+                    })}
+                </Select>
+            </FormControl>
+        </div>
+    )
 }
 
 const mapStateToProps = (reduxState) => {

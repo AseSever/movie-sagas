@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './MovieList.css';
 import { connect } from 'react-redux';
 import Movies from '../Movies/Movies.jsx';
 // MATERIAL-UI
 import {
     Grid,
-    Button,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    listControl: {
+        marginTop: 10,
+    },
+}));
+    
 
 function MovieList(props) {
-
-    
+    const classes = useStyles();
 
     // onclick of a movie poster to send to a details page
     const getDetails = (id) => {
-        console.log('click');
         props.dispatch({ type: 'FETCH_DETAILS', payload: id });
-        console.log(props.history);
         props.history.push(`/details/${id}`)
     }
 
@@ -25,38 +29,25 @@ function MovieList(props) {
         props.dispatch({ type: 'FETCH_MOVIES' })
     }
 
-    //click button, got to add movie page
-    const gotToAddMovie = () => {
-        props.history.push('/addmovie');
-    }
-
     // on mount will get our movies for render
     useEffect(() => {
         getMovies();
     }, []);
 
     return (
-        <div>
+        <div className={classes.listControl}>
             <Grid
                 container
                 spacing={3}
                 direction="row"
                 justify="flex-start"
             >
-                <Grid item xs={12}>
-                    <Button
-                        variant="contained"
-                        onClick={gotToAddMovie}
-                    >
-                        Add Movie
-                    </Button>
-                </Grid>
-                    {/* mapping the database of movies to render */}
-                    {props.reduxState.movies.map((movie, i) => {
-                        return (
-                            <Movies key={i} movie={movie} getDetails={getDetails} />
-                        )
-                    })}
+                {/* mapping the database of movies to render */}
+                {props.reduxState.movies.map((movie, i) => {
+                    return (
+                        <Movies key={i} movie={movie} getDetails={getDetails} />
+                    )
+                })}
             </Grid>
         </div>
     )

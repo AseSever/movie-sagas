@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import clsx from 'clsx';
 import {
     Typography,
-    Button,
     Grid,
     Card,
     CardHeader,
@@ -24,10 +23,7 @@ const useStyles = makeStyles((theme) => ({
     },
     div: {
         flexFlow: 1,
-    },
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
+        margin: 10,
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -55,7 +51,6 @@ function Details(props) {
     }
 
     let details = props.reduxState.details
-    console.log(details);
     return (
         <div className={classes.div}>
             <Grid
