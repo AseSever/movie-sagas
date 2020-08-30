@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './AddMovie.css';
 import { connect } from 'react-redux';
 import SelectMenu from '../SelectMenu/SelectMenu';
+// MATERIAL-UI
+import {
+    Button,
+    TextField,
+    Grid,
+} from '@material-ui/core';
 
 
 class AddMovie extends Component {
@@ -24,8 +30,8 @@ class AddMovie extends Component {
     handleSaveMovie = (event) => {
         event.preventDefault();
         console.log('clicky');
-        if( this.state.newMovie.title !== '' && this.state.newMovie.poster !== '') {
-            this.props.dispatch({type: 'SEND_NEWMOVIE', payload: this.state.newMovie})
+        if (this.state.newMovie.title !== '' && this.state.newMovie.poster !== '') {
+            this.props.dispatch({ type: 'SEND_NEWMOVIE', payload: this.state.newMovie })
         } else {
             alert('Cannot save a new movie without giving a movie and a poster')
         }
@@ -54,42 +60,66 @@ class AddMovie extends Component {
         return (
             <>
                 <div>
-                    <form className="form" onSubmit={this.handleSaveMovie}>
-                        <section className="form-section">
-                            <input
-                                value={this.state.newMovie.title}
-                                onChange={(event) => this.handleChange(event, 'title')}
-                                type="text" placeholder="Movie"
-                            />
-                        </section>
-                        <section className="form-section">
-                            <input
-                                value={this.state.newMovie.poster}
-                                onChange={(event) => this.handleChange(event, 'poster')}
-                                type="text" placeholder="Poster Url"
-                            />
-                        </section>
-                        <section className="form-section">
-                            <textarea
-                                value={this.state.newMovie.description}
-                                onChange={(event) => this.handleChange(event, 'description')}
-                                type="text" placeholder="Movie Description"
-                            />
-                        </section>
-                        <section className="form-section">
-                            <select
-                                onChange={(event) => this.handleChange(event, 'genre_id')}
+                    <Grid container justify="center">
+                        <Grid container direction="row" justify="flex-end">
+                            
+                            <Button
+                                onClick={this.handleCancel}
+                                variant="contained"
+                                color="secondary"
                             >
-                                <option>Select Genre</option>
-                                {/* Select Menu is mapping genres and generting all genre selections */}
-                                <SelectMenu />
-                            </select>
-                        </section>
-                        <section className="form-section">
-                            <input type="submit" value="Save" />
-                            <input onClick={this.handleCancel} type="button" value="Cancel" />
-                        </section>
-                    </form>
+                                Cancel
+                            </Button>
+                            
+                        </Grid>
+                        <form
+                            onSubmit={this.handleSaveMovie}
+                            className="form"
+                            noValidate autoComplete="on"
+                        >
+                            <section className="form-section">
+                                <TextField
+                                    value={this.state.newMovie.title}
+                                    onChange={(event) => this.handleChange(event, 'title')}
+                                    id="outlined-basic"
+                                    label="Movie"
+                                    variant="outlined"
+                                />
+                            </section>
+                            <section className="form-section">
+                                <TextField
+                                    value={this.state.newMovie.poster}
+                                    onChange={(event) => this.handleChange(event, 'poster')}
+                                    id="outlined-basic"
+                                    label="Poster Url"
+                                    variant="outlined"
+                                />
+                            </section>
+                            <section className="form-section">
+                                <TextField
+                                    value={this.state.newMovie.description}
+                                    onChange={(event) => this.handleChange(event, 'description')}
+                                    id="outlined-multiline-static"
+                                    label="Movie Description"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                />
+                            </section>
+                            <section className="form-section">
+                                <select
+                                    onChange={(event) => this.handleChange(event, 'genre_id')}
+                                >
+                                    <option>Select Genre</option>
+                                    {/* Select Menu is mapping genres and generting all genre selections */}
+                                    <SelectMenu />
+                                </select>
+                            </section>
+                            <section className="form-section">
+                                <Button type="submit" variant="contained">Save</Button>
+                            </section>
+                        </form>
+                    </Grid>
                 </div>
             </>
         )

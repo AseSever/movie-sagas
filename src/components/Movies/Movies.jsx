@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import './Movies.css';
 import {
@@ -7,45 +7,36 @@ import {
     CardActionArea,
     CardMedia
 } from '@material-ui/core';
-import {
-    withStyles,
-    createStyles
-} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
-const muiStyles = (theme) => createStyles({
-    // styles for cards
-    posters: {
-        width: 190
-    }
-})
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 190,
+    },
+});
 
-class Movies extends Component {
+function Movies(props) {
+    const classes = useStyles();
 
+    let movie = props.movie
+    return (
+        <>
+            <Grid
+                item xs={2}
+            >
+                <Card className={classes.root}>
+                    <CardActionArea onClick={() => props.getDetails(movie.id)}>
+                        <CardMedia>
+                            <img src={movie.poster} alt={movie.title} />
+                        </CardMedia>
+                    </CardActionArea>
+                </Card>
 
-    render() {
-        let movie = this.props.movie
-        return (
-            <>
-                <Grid
-                    item xs={3}
-                    
-                    className="poster"
-                >
-                    <Card>
-                        <CardActionArea onClick={() => this.props.getDetails(movie.id)}>
-                            <CardMedia>
-                                <img src={movie.poster} alt={movie.title} />
-                            </CardMedia>
-                        </CardActionArea>
-                    </Card>
+            </Grid>
+        </>
+    )
 
-                </Grid>
-            </>
-        )
-    }
 }
 
 
-export default connect()(
-    withStyles(muiStyles)(Movies)
-);
+export default connect()(Movies);

@@ -1,26 +1,107 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+// MATERIAL-UI
+import clsx from 'clsx';
+import {
+    Typography,
+    Button,
+    Grid,
+    Card,
+    CardHeader,
+    CardMedia,
+    CardContent,
+    CardActions,
+    Collapse,
+    IconButton,
+} from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import { makeStyles } from '@material-ui/core/styles';
 
-class Details extends Component {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        maxWidth: 500,
+    },
+    div: {
+        flexFlow: 1,
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+}));
 
-    goToList = () => {
-        this.props.history.push('/')
+
+function Details(props) {
+    const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
+    const goToList = () => {
+        props.history.push('/')
     }
 
-    render() {
-        let details = this.props.reduxState.details
-        console.log(details);
-        return (
-            <>
-                <div>
-                    <button onClick={this.goToList}>Back to list</button>
-                    <h1>{details.title}</h1>
-                    <img src={details.poster} alt={details.description} />
-                    <p>{details.description}</p>
-                </div>
-            </>
-        )
-    }
+    let details = props.reduxState.details
+    console.log(details);
+    return (
+        <div className={classes.div}>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+            >
+                <Grid item xs={4}>
+                    <Card className={classes.root}>
+                        <CardHeader
+                            title={details.title}
+                        >
+                        </CardHeader>
+                        <CardMedia>
+                            <img src={details.poster} alt={details.description} />
+                        </CardMedia>
+                        <CardActions disableSpacing>
+                            <IconButton 
+                                aria-label='Go back to Movies'
+                                onClick={goToList}
+                            >
+                                <ArrowBackIcon />
+                            </IconButton>
+                            <IconButton
+                                className={clsx(classes.expand, {
+                                    [classes.expandOpen]: expanded,
+                                })}
+                                onClick={handleExpandClick}
+                                aria-expanded={expanded}
+                                aria-label="show more"
+                            >
+                                <ExpandMoreIcon />
+                            </IconButton>
+                        </CardActions>
+                        <Collapse in={expanded} timeout="auto" unmountOnExit>
+                            <CardContent>
+                                <Typography paragraph>
+                                    {details.description}
+                                </Typography>
+                            </CardContent>
+                        </Collapse>
+                    </Card>
+                </Grid>
+            </Grid>
+        </div>
+    )
 }
 
 const mapStateToProps = (reduxState) => {
