@@ -1,11 +1,12 @@
 .App {
   text-align: center;
+  
 }
 
 
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background: linear-gradient(45deg, hsla(26, 85%, 52%, 0.9) 20%, hsla(26, 78%, 35%, 1) 52%, hsla(0, 0%, 0%, 1) 100%);
+  height: 100px;
   padding: 20px;
   color: white;
 }
@@ -23,9 +24,33 @@
   to { transform: rotate(360deg); }
 }
 
+/* Making all images the same size */
 img {
   width: 185px;
   height: 272px;
 }
 
+/* NAV BAR CSS */
+.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: black;
 
+}
+.nav li {
+  float: left;
+}
+
+.nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Change the link color to #111 (black) on hover */
+.nav li a:hover {
+  background-color: darkgrey;
+}

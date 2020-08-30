@@ -1,68 +1,56 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import './MovieList.css';
 import { connect } from 'react-redux';
 import Movies from '../Movies/Movies.jsx';
 // MATERIAL-UI
 import {
     Grid,
-    Button,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
-class MovieList extends Component {
+const useStyles = makeStyles((theme) => ({
+    listControl: {
+        marginTop: 10,
+    },
+}));
+    
 
-    // on mount will get our movies for render
-    componentDidMount = () => {
-        this.getMovies();
-    }
+function MovieList(props) {
+    const classes = useStyles();
 
     // onclick of a movie poster to send to a details page
-    getDetails = (id) => {
-        console.log('click');
-        this.props.dispatch({ type: 'FETCH_DETAILS', payload: id });
-        console.log(this.props.history);
-        this.props.history.push(`/details/${id}`)
+    const getDetails = (id) => {
+        props.dispatch({ type: 'FETCH_DETAILS', payload: id });
+        props.history.push(`/details/${id}`)
     }
 
     // dispatch to get request saga
-    getMovies = () => {
-        this.props.dispatch({ type: 'FETCH_MOVIES' })
+    const getMovies = () => {
+        props.dispatch({ type: 'FETCH_MOVIES' })
     }
 
-    //click button, got to add movie page
-    gotToAddMovie = () => {
-        this.props.history.push('/addmovie');
-    }
+    // on mount will get our movies for render
+    useEffect(() => {
+        getMovies();
+    }, []);
 
-    render() {
-        return (
-            <>
-                <div >
-                    <Grid>
-                        <Button
-                            className="add-movie" 
-                            variant="contained"
-                            onClick={this.gotToAddMovie}
-                        >
-                            Add Movie
-                        </Button>
-                    </Grid>
-                    <Grid
-                        container
-                        spacing={3}
-                        direction="row"
-                        justify="flex-start"
-                    >
-                        {this.props.reduxState.movies.map((movie, i) => {
-                            return (
-                                <Movies key={i} movie={movie} getDetails={this.getDetails} />
-                            )
-                        })}
-                    </Grid>
-
-                </div>
-            </>
-        )
-    }
+    return (
+        <div className={classes.listControl}>
+            <Grid
+                container
+                spacing={3}
+                direction="row"
+                justify="flex-start"
+            >
+                {/* mapping the database of movies to render */}
+                {props.reduxState.movies.map((movie, i) => {
+                    return (
+                        <Movies key={i} movie={movie} getDetails={getDetails} />
+                    )
+                })}
+            </Grid>
+        </div>
+    )
 }
 
 
