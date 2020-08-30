@@ -6,6 +6,10 @@ import SelectMenu from '../SelectMenu/SelectMenu';
 
 class AddMovie extends Component {
 
+    componentDidMount = () => {
+        this.props.dispatch({ type: 'FETCH_GENRES' });
+    }
+
     state = {
         newMovie: {
             title: '',
@@ -18,6 +22,7 @@ class AddMovie extends Component {
     handleSaveMovie = (event) => {
         event.preventDefault();
         console.log('clicky');
+        this.props.dispatch({type: 'SEND_NEWMOVIE', payload: this.state.newMovie})
     }
 
     // this is setting our state for a post request
@@ -78,5 +83,10 @@ class AddMovie extends Component {
     }
 }
 
+const mapStateToProps = (reduxState) => {
+    return {
+        reduxState
+    }
+}
 
-export default connect()(AddMovie);
+export default connect(mapStateToProps)(AddMovie);

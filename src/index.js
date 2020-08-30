@@ -22,9 +22,9 @@ function* rootSaga() {
 
 // generator for posting a new movie
 function* postNewMovie(action) {
+    console.log(action.payload);
     try {
         yield axios.post('/api/movie', action.payload)
-        yield put({ type: 'SET_MOVIES' })
     } catch (err) {
         console.log('Error in postNewMovie', err);
     }
