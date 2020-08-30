@@ -27,7 +27,6 @@ function SelectMenu(props) {
                     onChange={(event) => props.handleChange(event, 'genre_id')}
                     label="Age"
                 >
-                    <MenuItem value=""><em>None</em></MenuItem>
                     {props.reduxState.genres.map((genre, i) => {
                         return (<MenuItem key={i} value={genre.id}>{genre.name}</MenuItem>)
                     })}

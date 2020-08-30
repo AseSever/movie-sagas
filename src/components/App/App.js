@@ -8,13 +8,26 @@ import AddMovie from '../AddMovie/AddMovie';
 //MATERIAL-UI
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { dark } from '@material-ui/core/styles/createPalette';
+import { lightBlue, orange } from '@material-ui/core/colors';
+
+const newOrange = orange['800']
+// orange #FD4C00
+// yellow #FCE522
+// blue #52C6CF
+// grey #706D7A
+// darkgrey #1E1E24
 
 const customeTheme = createMuiTheme({
   //theme settings
   palette: {
-    
+    primary: {
+      main: '#52C6CF',
+    },
+    secondary: {
+      main: newOrange,
+    },
   },
-  
+
 });
 
 class App extends Component {

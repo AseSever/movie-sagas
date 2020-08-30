@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  
 }
 
 
@@ -23,17 +24,20 @@
   to { transform: rotate(360deg); }
 }
 
+/* Making all images the same size */
 img {
   width: 185px;
   height: 272px;
 }
 
+/* NAV BAR CSS */
 .nav {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background: black;
+
 }
 .nav li {
   float: left;

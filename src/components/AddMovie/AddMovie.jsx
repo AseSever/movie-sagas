@@ -7,12 +7,9 @@ import TitlePosterInput from '../TitlePosterInput/TitlePosterInput';
 // MATERIAL-UI
 import {
     Button,
-    TextField,
+    Paper,
     Grid,
 } from '@material-ui/core';
-
-
-
 
 class AddMovie extends Component {
 
@@ -64,59 +61,64 @@ class AddMovie extends Component {
         return (
             <>
                 <div>
-                    <Grid
-                        container
-                        spacing={2}
-                        direction="row"
-                        justify="space-around"
-                    >
-                        <Grid item xs={12}>
-                            <h2>Add a Movie!!</h2>
-                        </Grid>
-                        <form
-                            onSubmit={this.handleSaveMovie}
-                            className="form"
-                            noValidate autoComplete="on"
+                    
+                        <Grid
+                            container
+                            spacing={2}
+                            direction="row"
+                            justify="space-around"
                         >
-                            <Grid item>
-                                <Button 
-                                    type="submit" 
-                                    variant="contained"
-                                >
-                                    Save
+                            <Paper>
+                            <Grid item xs={12}>
+                                <h2>Add a Movie!!</h2>
+                            </Grid>
+                            <form
+                                onSubmit={this.handleSaveMovie}
+                                className="form"
+                                noValidate autoComplete="on"
+                            >
+                                <Grid item>
+                                    <Button
+                                        type="submit"
+                                        variant="contained"
+                                        color="primary"
+                                    >
+                                        Save
                                 </Button>
                                 &nbsp;
                                 &nbsp;
                                 &nbsp;
                                 <Button
-                                    onClick={this.handleCancel}
-                                    variant="contained"
-                                    color="secondary"
-                                >
-                                    Cancel
+                                        onClick={this.handleCancel}
+                                        variant="contained"
+                                        color="secondary"
+                                    >
+                                        Cancel
                                 </Button>
-                            </Grid>
-                            <TitlePosterInput
-                                title={this.state.newMovie.title}
-                                poster={this.state.newMovie.poster}
-                                handleChange={this.handleChange}
-                            />
-                            <section className="form-section">
-                                {/* Textfield component for description */}
-                                <DescriptionTextfield
-                                    description={this.state.newMovie.description}
+                                </Grid>
+                                <TitlePosterInput
+                                    title={this.state.newMovie.title}
+                                    poster={this.state.newMovie.poster}
                                     handleChange={this.handleChange}
                                 />
-                            </section>
-                            {/* Select menu component */}
-                            <section className="form-section">
-                                <SelectMenu
-                                    genre_id={this.state.newMovie.genre_id}
-                                    handleChange={this.handleChange}
-                                />
-                            </section>
-                        </form>
-                    </Grid>
+                                <section className="form-section">
+                                    {/* Textfield component for description */}
+                                    <DescriptionTextfield
+                                        description={this.state.newMovie.description}
+                                        handleChange={this.handleChange}
+                                    />
+                                </section>
+                                {/* Select menu component */}
+                                <section className="form-section">
+                                    <SelectMenu
+                                        genre_id={this.state.newMovie.genre_id}
+                                        handleChange={this.handleChange}
+                                    />
+                                </section>
+                            </form>
+                            </Paper>
+                        </Grid>
+                    
                 </div>
             </>
         )
