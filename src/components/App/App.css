@@ -5,7 +5,7 @@
 
 
 .App-header {
-  background: linear-gradient(45deg, hsla(26, 85%, 52%, 0.9) 20%, hsla(26, 78%, 35%, 1) 52%, hsla(0, 0%, 0%, 1) 100%);
+  background: #904E55;
   height: 100px;
   padding: 20px;
   color: white;
@@ -36,7 +36,7 @@ img {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background: black;
+  background: #564E58;
 
 }
 .nav li {
@@ -53,4 +53,5 @@ img {
 /* Change the link color to #111 (black) on hover */
 .nav li a:hover {
   background-color: darkgrey;
+
 }

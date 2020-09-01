@@ -20,6 +20,7 @@ function Movies(props) {
     const classes = useStyles();
 
     let movie = props.movie
+    console.log(movie);
     return (
         <>
             <Grid

@@ -19,6 +19,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_DETAILS', getDetails);
     yield takeEvery('FETCH_GENRES', getGenres);
     yield takeEvery('SEND_NEWMOVIE', postNewMovie);
+    yield takeEvery('FETCH_MOVIE_GENRES', getMovieGenres);
 }
 
 // generator for posting a new movie
@@ -41,6 +42,16 @@ function* getGenres() {
         console.log('Error with getGenres', err);
     }
 }
+
+function* getMovieGenres(action) {
+    try {
+        let response = yield axios.get(`/api/movie/details/genres/${action.payload}`)
+        console.log(response.data);
+        yield put({ type: 'SET_MOVIE_GENRES', payload: response.data})
+    } catch (err) {
+        console.log('Error with getMovieGenres', err);
+    }
+} // get
 
 // generator for movie details
 function* getDetails(action) {
@@ -70,6 +81,14 @@ function* getMovies() {
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
+const movieGenres = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_MOVIE_GENRES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
 
 // Used to store details data for each page
 const details = (state = {}, action) => {
@@ -107,6 +126,7 @@ const storeInstance = createStore(
         movies,
         genres,
         details,
+        movieGenres,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
