@@ -43,8 +43,7 @@ const useStyles = makeStyles((theme) => ({
 function Details(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    let { id } = useParams();
-    console.log(useParams());
+   
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -60,7 +59,7 @@ function Details(props) {
 
     return (
         <div className={classes.div}>
-            <h3>{id}</h3>
+            
             <Grid
                 container
                 direction="row"

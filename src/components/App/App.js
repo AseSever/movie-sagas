@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link, useParams, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, useParams} from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList.jsx';
@@ -7,8 +7,6 @@ import Details from '../Details/Details.jsx';
 import AddMovie from '../AddMovie/AddMovie';
 //MATERIAL-UI
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { dark } from '@material-ui/core/styles/createPalette';
-import { lightBlue, orange } from '@material-ui/core/colors';
 
 
 // Ecru #BFB48F
@@ -45,9 +43,9 @@ class App extends Component {
             <Route exact path="/" component={MovieList} />
 
             <Route path="/addmovie" component={AddMovie} />
-            <Switch>
-              <Route path="/:details" children={<Details />} />
-            </Switch>
+            
+            <Route path="/details" component={Details} />
+            
             {/* ADD PAGES! */}
           </Router>
         </div>
