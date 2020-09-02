@@ -21,6 +21,7 @@ function MovieList(props) {
     // onclick of a movie poster to send to a details page
     const getDetails = (id) => {
         props.dispatch({ type: 'FETCH_DETAILS', payload: id });
+        props.dispatch({ type: 'FETCH_MOVIE_GENRES', payload: id});
         props.history.push(`/details/${id}`)
     }
 

@@ -18,6 +18,7 @@ after getting tables set up you should be ready to ```npm run server``` and then
 5. If you go to the *Add Movie* page you can enter A movie title, a url location for its poster, a description, and one genre at the moment. (I recomend using wikipedia for your source unless you have specific info to add.)
 6. Clicking Save or hitting ENTER will submit the new movie to the database and bring you back to the movie list where you will see the new movie on the DOM!
 
+
 ### ScreenShots
 ![Home View](wireframes/Home.png)
 ![Details Page View](wireframes/Details1.png)

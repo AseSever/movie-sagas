@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import './Details.css';
 // MATERIAL-UI
 import clsx from 'clsx';
 import {
@@ -19,7 +21,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 500,
+        minWidth: 500,
     },
     div: {
         flexFlow: 1,
@@ -41,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 function Details(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+   
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -51,8 +54,12 @@ function Details(props) {
     }
 
     let details = props.reduxState.details
+    console.log(props.reduxState.movieGenres);
+
+
     return (
         <div className={classes.div}>
+            
             <Grid
                 container
                 direction="row"
@@ -68,7 +75,7 @@ function Details(props) {
                             <img src={details.poster} alt={details.description} />
                         </CardMedia>
                         <CardActions disableSpacing>
-                            <IconButton 
+                            <IconButton
                                 aria-label='Go back to Movies'
                                 onClick={goToList}
                             >
@@ -90,6 +97,14 @@ function Details(props) {
                                 <Typography paragraph>
                                     {details.description}
                                 </Typography>
+                                <ul>
+                                    <Typography>
+                                        {props.reduxState.movieGenres.map((genre, i) => {
+                                            return (<li key={i}>{genre.name}</li>)
+                                        })}
+
+                                    </Typography>
+                                </ul>
                             </CardContent>
                         </Collapse>
                     </Card>

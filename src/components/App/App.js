@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, useParams} from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import MovieList from '../MovieList/MovieList.jsx';
@@ -7,24 +7,22 @@ import Details from '../Details/Details.jsx';
 import AddMovie from '../AddMovie/AddMovie';
 //MATERIAL-UI
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { dark } from '@material-ui/core/styles/createPalette';
-import { lightBlue, orange } from '@material-ui/core/colors';
 
-const newOrange = orange['800']
-// orange #FD4C00
-// yellow #FCE522
-// blue #52C6CF
-// grey #706D7A
-// darkgrey #1E1E24
+
+// Ecru #BFB48F
+// Dark Liver #564E58
+// Cardovan #904E55
+// Isabelline #F2EFE9
+// Raisin black #252627
 
 const customeTheme = createMuiTheme({
   //theme settings
   palette: {
     primary: {
-      main: '#52C6CF',
+      main: '#F2EFE9',
     },
     secondary: {
-      main: newOrange,
+      main: '#BFB48F',
     },
   },
 
@@ -43,8 +41,11 @@ class App extends Component {
               <li><Link to="/addmovie">Add Movie</Link></li>
             </ul>
             <Route exact path="/" component={MovieList} />
-            <Route path="/details" component={Details} />
+
             <Route path="/addmovie" component={AddMovie} />
+            
+            <Route path="/details" component={Details} />
+            
             {/* ADD PAGES! */}
           </Router>
         </div>
