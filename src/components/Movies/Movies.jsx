@@ -8,8 +8,6 @@ import {
     CardMedia,
     CardHeader,
     Avatar,
-    CardContent,
-    Typography,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -46,11 +44,7 @@ function Movies(props) {
                         <CardMedia>
                             <img src={movie.poster} alt={movie.title} />
                         </CardMedia>
-                        <CardContent>
-                            {/* <Typography variant="body2" color="textSecondary" component="p">
-                                {movie.description}
-                            </Typography> */}
-                        </CardContent>
+                        
                     </CardActionArea>
                 </Card>
 
