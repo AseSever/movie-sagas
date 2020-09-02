@@ -10,13 +10,13 @@ This was a project to show a list of movies that you can click on and see their 
 ```
 npm install
 ```
--After everything is installed grab the information out of the database.sql and set up your own database with the name 'saga_movies_weekend'.
+1 After everything is installed grab the information out of the database.sql and set up your own database with the name 'saga_movies_weekend'.
 after getting tables set up you should be ready to ```npm run server``` and then ``` npm run client``` to get the app running.
--From the home screen you can see the movies currently in the database.
--Click on a movie to navigate to that movies specific details page.  --*NOTE I would like to have shown all of the genres here but I did not get there in time.*
--You can see the movie details by clicking on the down arrow chevron symbol, and you can navigate back to home either through the nav bar, or the back arrow button.
--If you go to the *Add Movie* page you can enter A movie title, a url location for its poster, a description, and one genre at the moment. (I recomend using wikipedia for your source unless you have specific info to add.)
--Clicking Save or hitting ENTER will submit the new movie to the database and bring you back to the movie list where you will see the new movie on the DOM!
+2 From the home screen you can see the movies currently in the database.
+3 Click on a movie to navigate to that movies specific details page.  -- *NOTE I would like to have shown all of the genres here but I did not get there in time.*
+4 You can see the movie details by clicking on the down arrow chevron symbol, and you can navigate back to home either through the nav bar, or the back arrow button.
+5 If you go to the *Add Movie* page you can enter A movie title, a url location for its poster, a description, and one genre at the moment. (I recomend using wikipedia for your source unless you have specific info to add.)
+6 Clicking Save or hitting ENTER will submit the new movie to the database and bring you back to the movie list where you will see the new movie on the DOM!
 
 ### ScreenShots
 ![Home View](wireframes/Home.png)
