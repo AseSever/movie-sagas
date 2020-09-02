@@ -47,9 +47,9 @@ function Movies(props) {
                             <img src={movie.poster} alt={movie.title} />
                         </CardMedia>
                         <CardContent>
-                            <Typography variant="body2" color="textSecondary" component="p">
+                            {/* <Typography variant="body2" color="textSecondary" component="p">
                                 {movie.description}
-                            </Typography>
+                            </Typography> */}
                         </CardContent>
                     </CardActionArea>
                 </Card>
